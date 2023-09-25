@@ -12,10 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author pc
- */
+
 public class Conexion {
 
     private static final String URL = "jdbc:mariadb://localhost/";
@@ -39,8 +36,7 @@ public class Conexion {
                 Class.forName("org.mariadb.jdbc.Driver");
                 //se cargan los driver de conexión al gestor de base de datos;
                 try {
-                    connection = DriverManager.getConnection(URL + DB + "?useLegacyDatetimeCode=false&serverTimezone=UTC"
-                            + "&user=" + USUARIO + "&password=" + PASSWORD);
+                    connection = DriverManager.getConnection(URL + DB, USUARIO, PASSWORD);
                     /*se establece la conexión a la base de datos invocando al método getConnection()
                    de la clase DriverManager pasando por parámetro un String que contiene la URL de la base de
                    datos, PASSWORD y CONTRASEÑA*/
