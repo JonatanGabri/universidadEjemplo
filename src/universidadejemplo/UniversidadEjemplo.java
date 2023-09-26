@@ -5,8 +5,12 @@
  */
 package universidadejemplo;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.time.LocalDate;
 import universidadejemplo.AccesoADatos.AlumnoData;
+import universidadejemplo.AccesoADatos.Conexion;
 import universidadejemplo.Entidades.Alumno;
 
 /**
@@ -20,9 +24,14 @@ public class UniversidadEjemplo {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-           Alumno alu = new Alumno(12239988,"Morales", "Mia", LocalDate.of(2000,4,25), true);
-           AlumnoData data = new AlumnoData();
-           data.guardarAlumno(alu);
+        //Connection con = null;
+        //PreparedStatement ps = null;
+        //con = Conexion.getConnection();
+        //ResultSet rs = null;
+        Alumno alu = new Alumno(190, "Pato", "aksj", LocalDate.of(2000, 4, 25), true);
+        AlumnoData data = new AlumnoData();
+        data.guardarAlumno(alu);
+        
     }
-    
+
 }

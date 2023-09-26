@@ -23,6 +23,7 @@ public class Alumno {
     }
 
     public Alumno(int dni, String apellido, String nombre, LocalDate fechaNac, boolean activo) {
+        this.dni=dni;
         this.apellido = apellido;
         this.nombre = nombre;
         this.fechaNac = fechaNac;
@@ -31,6 +32,7 @@ public class Alumno {
 
     public Alumno(int idAlumno, int dni, String apellido, String nombre, LocalDate fechaNac, boolean activo) {
         this.idAlumno = idAlumno;
+        this.dni=dni;
         this.apellido = apellido;
         this.nombre = nombre;
         this.fechaNac = fechaNac;
