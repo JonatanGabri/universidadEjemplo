@@ -20,7 +20,7 @@ public class UniversidadEjemplo {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-           Alumno alu = new Alumno(1234,"Cayata", "Jonatan", LocalDate.of(1998,4,25), true);
+           Alumno alu = new Alumno(12239988,"Morales", "Mia", LocalDate.of(2000,4,25), true);
            AlumnoData data = new AlumnoData();
            data.guardarAlumno(alu);
     }

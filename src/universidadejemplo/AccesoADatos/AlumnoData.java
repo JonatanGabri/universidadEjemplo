@@ -21,7 +21,7 @@ public class AlumnoData {
     }
 
     public void guardarAlumno(Alumno alumno) {
-        String sql = "INSERT INTO alumno(dni,apellido, nombre,fechaNacimiento,estado) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO alumno (dni,apellido, nombre,fechaNacimiento,estado) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, alumno.getDni());
@@ -29,7 +29,7 @@ public class AlumnoData {
             ps.setString(3, alumno.getNombre());
             ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
             ps.setBoolean(5, alumno.isActivo());
-            ps.executeUpdate(sql);
+            ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 alumno.setIdAlumno(rs.getInt(1));
@@ -42,11 +42,11 @@ public class AlumnoData {
     }
 
     public Alumno buscarAlumno(int id) {
-        Alumno alumno = null;
+       
         String sql = "SELECT dni, apellido, nombre, fechaNacimiento FROM alumno WHERE idAlumno = ? AND estado = 1";
-        PreparedStatement ps = null;
+        Alumno alumno = null;
         try {
-            ps = con.prepareStatement(sql);
+           PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
@@ -56,8 +56,8 @@ public class AlumnoData {
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
-                alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
-                alumno.setEstado(true);
+                alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
+                alumno.setActivo(true);
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el alumno");
             }
@@ -85,8 +85,8 @@ public class AlumnoData {
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
-                alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
-                alumno.setEstado(true);
+                alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
+                alumno.setActivo(true);
 
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el alumno");
@@ -111,8 +111,8 @@ public class AlumnoData {
                 alumno.setDni(rs.getInt("Dni"));
                 alumno.setApellido(rs.getString("Apellido"));
                 alumno.setNombre(rs.getString("Nombre"));
-                alumno.setFechaNacimiento(rs.getDate("FechaNaciemiento").toLocalDate());
-                alumno.setEstado(rs.getBoolean("Estado"));
+                alumno.setFechaNac(rs.getDate("FechaNaciemiento").toLocalDate());
+                alumno.setActivo(rs.getBoolean("Estado"));
                 alumnos.add(alumno);
             }
             ps.close();
