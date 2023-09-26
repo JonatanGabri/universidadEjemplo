@@ -40,6 +40,7 @@ public class Conexion {
                     /*se establece la conexión a la base de datos invocando al método getConnection()
                    de la clase DriverManager pasando por parámetro un String que contiene la URL de la base de
                    datos, PASSWORD y CONTRASEÑA*/
+                     JOptionPane.showMessageDialog(null, "Conexion exitosa");
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Error al conectarse a la BD");
                 }
