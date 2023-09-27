@@ -32,7 +32,7 @@ public class MateriaData {
     
     public void guardarMateria(Materia materia){
         
-        String sql ="INSERT INTO materia(nombre, anioMateria, activo) "
+        String sql ="INSERT INTO materia(nombre, año, estado) "
                 + "VALUES (?, ?, ?)";
         
         try {
@@ -46,7 +46,7 @@ public class MateriaData {
             if(rs.next()){
                 
                 materia.setIdMateria(rs.getInt(1));
-                JOptionPane.showInternalMessageDialog(null , "Materia agregada con exito");
+                JOptionPane.showMessageDialog(null , "Materia agregada con exito");
             
             }
             ps.close();
@@ -59,7 +59,7 @@ public class MateriaData {
     }
     public Materia buscarMateria(int id){
         
-        String sql = "SELECT nombre, anioMateria FROM materia WHERE idMateria = ? AND estado = 1";
+        String sql = "SELECT nombre, año FROM materia WHERE idMateria = ? AND estado = 1";
         Materia materia=null;
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -70,7 +70,7 @@ public class MateriaData {
                materia=new Materia();
                materia.setIdMateria(id);
                materia.setNombre(rs.getString("nombre"));
-               materia.setAnioMateria(rs.getInt("anioMateria"));
+               materia.setAnioMateria(rs.getInt("año"));
                materia.setActivo(true);
             
             }else{

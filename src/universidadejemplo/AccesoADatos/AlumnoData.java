@@ -111,7 +111,7 @@ public class AlumnoData {
                 alumno.setDni(rs.getInt("Dni"));
                 alumno.setApellido(rs.getString("Apellido"));
                 alumno.setNombre(rs.getString("Nombre"));
-                alumno.setFechaNac(rs.getDate("FechaNaciemiento").toLocalDate());
+                alumno.setFechaNac(rs.getDate("FechaNacimiento").toLocalDate());
                 alumno.setActivo(rs.getBoolean("Estado"));
                 alumnos.add(alumno);
             }
