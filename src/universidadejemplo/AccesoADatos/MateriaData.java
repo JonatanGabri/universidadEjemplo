@@ -59,7 +59,7 @@ public class MateriaData {
     }
     public Materia buscarMateria(int id){
         
-        String sql = "SELECT nombre, año FROM materia WHERE idMateria = ? AND estado = 1";
+        String sql = "SELECT * FROM materia WHERE idMateria = ? AND estado = 1";
         Materia materia=null;
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -87,7 +87,7 @@ public class MateriaData {
     }
     public void modificarMateria(Materia materia){
         
-        String sql = "UPDATE materia SET nombre = ?, anioMateria = ? WHERE idMateria = ?";
+        String sql = "UPDATE materia SET nombre = ?, año = ? WHERE idMateria = ?";
         
         try {
             PreparedStatement ps= con.prepareStatement(sql);
@@ -125,7 +125,7 @@ public class MateriaData {
     
     public List<Materia> listarMaterias(){
         
-         String sql = "SELECT idMateria, nombre, anioMateria FROM materia WHERE estado = 1";
+         String sql = "SELECT idMateria, nombre, año FROM materia WHERE estado = 1";
          List<Materia> materias = new ArrayList<>();
      try{
         
@@ -135,7 +135,7 @@ public class MateriaData {
             Materia materia = new Materia();
             materia.setIdMateria(rs.getInt("idMateria"));
             materia.setNombre(rs.getNString("Nombre"));
-            materia.setAnioMateria(rs.getInt("anioMateria"));
+            materia.setAnioMateria(rs.getInt("año"));
             materia.setActivo(true);
             materias.add(materia);
         }

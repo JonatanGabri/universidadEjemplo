@@ -181,9 +181,9 @@ public class InscripcionData {
         
         ArrayList<Materia> materias=new ArrayList<>();
         
-        String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion, materia"
+        String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion, materia "
                 + "WHERE inscripcion.idMateria = materia.idMateria AND inscripcion.idAlumno = ?";
-        
+        //despues de materia debe haber un espacio
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
@@ -201,7 +201,7 @@ public class InscripcionData {
             ps.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion"+ex.toString());
         }
         
         return materias;
@@ -242,12 +242,12 @@ public class InscripcionData {
         
         ArrayList<Alumno> alumnosMateria=new ArrayList<>();
         
-        String sql = "SELECT a.idAlumno, dni, nombre, apellido, fechaNacimiento, estado"
-                + "FROM inscripocion i, alumno a WHERE i.idAlumno = a.idAlumno AND idMateria = ?"
+        String sql = "SELECT a.idAlumno, dni, nombre, apellido, fechaNacimiento, estado "
+                + "FROM inscripcion i, alumno a WHERE i.idAlumno = a.idAlumno AND idMateria = ? "
                 + "AND a.estado = 1";
         
         try {
-            PreparedStatement ps=con.prepareCall(sql);
+            PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, idMateria);
             
             ResultSet rs=ps.executeQuery();
@@ -255,6 +255,7 @@ public class InscripcionData {
                 
                 Alumno alumno=new Alumno();
                 alumno.setIdAlumno(rs.getInt("idAlumno"));
+                alumno.setDni(rs.getInt("dni"));//falto este campo
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
